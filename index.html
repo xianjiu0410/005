@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>家书·回声 — 见字如面，听声如晤</title>
+<meta name="description" content="八封红色家书的数字展馆：AI 朗读、逐句高亮、时代注解。CMIT「红色之旅 追梦铸魂」赛道参赛作品。">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- 顶栏（阅读页内页显示，序厅隐藏） -->
+<header id="site-header" class="hidden">
+  <div class="header-inner">
+    <a href="#/" class="logo">家书<span class="dot">·</span>回声</a>
+    <nav class="nav">
+      <a href="#/letters" data-nav="letters">家书馆</a>
+      <a href="#/wall" data-nav="wall">回信墙</a>
+      <a href="#/about" data-nav="about">关于</a>
+    </nav>
+    <button id="menu-btn" class="menu-btn" aria-label="菜单">☰</button>
+  </div>
+  <nav id="mobile-nav" class="mobile-nav hidden">
+    <a href="#/letters">家书馆</a>
+    <a href="#/wall">回信墙</a>
+    <a href="#/about">关于</a>
+  </nav>
+</header>
+
+<!-- 视图容器 -->
+<main id="app">
+
+  <!-- 序厅 -->
+  <section id="view-landing" class="view">
+    <div class="landing-bg"></div>
+    <div class="landing-content">
+      <div class="landing-seal">聽</div>
+      <h1 class="landing-title">家书<span class="thin">·</span>回声</h1>
+      <p class="landing-quote">「见字如面，听声如晤」</p>
+      <p class="landing-sub">1928 — 1949 · 八封家书的声音</p>
+      <button id="enter-btn" class="btn-primary">聆 听 · 进 入</button>
+      <div class="scroll-hint">↓ 也可下滑进入</div>
+    </div>
+    <div class="landing-foot">CMIT「红色之旅 追梦铸魂」专项赛道参赛作品</div>
+  </section>
+
+  <!-- 家书卡片墙 -->
+  <section id="view-letters" class="view hidden">
+    <div class="page-head">
+      <h2>八封家书，八种告别</h2>
+      <div class="filters" id="era-filters"></div>
+    </div>
+    <div class="letter-grid" id="letter-grid"></div>
+  </section>
+
+  <!-- 家书阅读页 -->
+  <section id="view-reader" class="view hidden">
+    <div class="reader-layout">
+      <div class="reader-main">
+        <div class="reader-meta">
+          <span class="no" id="reader-no"></span>
+          <h2 id="reader-title"></h2>
+          <p id="reader-date"></p>
+        </div>
+        <div class="letter-paper" id="letter-paper"></div>
+      </div>
+      <aside class="reader-side" id="reader-side"></aside>
+    </div>
+    <div class="reader-pager">
+      <a href="#" id="prev-letter" class="pager-link">← 上一封</a>
+      <a href="#/letters" class="pager-link pager-mid">返回卡片墙</a>
+      <a href="#" id="next-letter" class="pager-link">下一封 →</a>
+    </div>
+  </section>
+
+  <!-- 回信墙 -->
+  <section id="view-wall" class="view hidden">
+    <div class="page-head">
+      <h2>跨越时空，写一封回信</h2>
+      <p class="page-sub">你的回信保存在本机浏览器中，不会上传。</p>
+    </div>
+    <form id="wall-form" class="wall-form">
+      <input type="text" id="wall-to" maxlength="20" placeholder="致 ____ 的一封信（写给哪位先烈）" required>
+      <textarea id="wall-text" maxlength="200" rows="4" placeholder="想对他说的话（限 200 字）" required></textarea>
+      <div class="wall-form-foot">
+        <span id="wall-count">0 / 200</span>
+        <button type="submit" class="btn-primary btn-small">贴 上 墙</button>
+      </div>
+      <p id="wall-hint" class="wall-hint hidden"></p>
+    </form>
+    <div class="wall-grid" id="wall-grid"></div>
+  </section>
+
+  <!-- 尾声 -->
+  <section id="view-epilogue" class="view hidden">
+    <div class="epilogue-inner">
+      <h2>你，还记得哪一封？</h2>
+      <div class="epilogue-list" id="epilogue-list"></div>
+      <p class="epilogue-line">传承，是记住之后，再说给下一个人听。</p>
+      <div class="epilogue-qinghai" id="epilogue-qinghai"></div>
+      <div class="epilogue-actions">
+        <a href="#/letters" class="btn-primary">再读一遍</a>
+        <a href="#/wall" class="btn-ghost">去写回信</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 关于 / 史料出处 -->
+  <section id="view-about" class="view hidden">
+    <div class="page-head"><h2>关于 · 史料出处</h2></div>
+    <div class="about-body">
+      <h3>作品简介</h3>
+      <p>《家书·回声》是 CMIT「红色之旅 追梦铸魂」专项赛道参赛作品。展馆收录 1928—1949 年间八封革命家书，以语音朗读、逐句高亮与时代注解，让百年前的文字重新发声。</p>
+      <h3>史料出处与参考文献</h3>
+      <ul id="about-sources"></ul>
+      <h3>AI 工具使用说明（摘要）</h3>
+      <p>本作品在创作中使用生成式人工智能工具辅助：①关键词注解与背景文案由大模型生成初稿，经人工逐条核对史实后固化为数据文件；②视觉素材中的纹理由 AIGC 辅助生成。信件原文均取自权威公开史料（出处见上），未由 AI 生成。运行时零 AI 接口依赖。</p>
+      <h3>团队</h3>
+      <p>（待填写：团队成员与指导教师）</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- 点词弹注浮层 -->
+<div id="anno-pop" class="anno-pop hidden">
+  <div class="anno-term" id="anno-term"></div>
+  <div class="anno-text" id="anno-text"></div>
+  <div class="anno-src" id="anno-src"></div>
+  <button class="anno-close" id="anno-close">✕</button>
+</div>
+
+<!-- 移动端侧栏抽屉遮罩 -->
+<div id="side-mask" class="side-mask hidden"></div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
